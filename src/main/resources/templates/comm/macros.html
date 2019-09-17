@@ -1,0 +1,15 @@
+#macro pageNav(pageInfo, prevText, nextText, prefix)
+<ol class="page-navigator">
+    #if(pageInfo.hasPrevPage)
+    <li class="prev"><a href="/${prefix}/${pageInfo.prevPage}">${prevText}</a></li>
+    #end
+
+    #for(navIndex : pageInfo.navPageNums)
+    <li #if(pageInfo.pageNum== navIndex) class="current" #end><a href="/${prefix}/${navIndex}">${navIndex}</a></li>
+    #end
+
+    #if(pageInfo.hasNextPage)
+    <li class="next"><a href="/${prefix}/${pageInfo.nextPage}">${nextText}</a></li>
+    #end
+</ol>
+#end

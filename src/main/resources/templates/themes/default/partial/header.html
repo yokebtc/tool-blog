@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="${meta_keywords()}"/>
+    <meta name="description" content="${meta_description()}"/>
+    <meta content="${_csrf_token}" name="csrf_token"/>
+    <link rel="shortcut icon" href="${theme_url('/static/img/favicon.png')}"/>
+    <link rel="apple-touch-icon" href="${theme_url('/static/img/apple-touch-icon.png')}"/>
+    <title>${head_title()}</title>
+    <link href="${theme_url('/static/css/default.min.css')}?v=${version}" rel="stylesheet">
+	<link href="${theme_url('/static/css/style.min.css')}?v=${version}" rel="stylesheet">
+    #if(allow_cloud_CDN() == "true")
+    <script src="//lib.baomitu.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//lib.baomitu.com/highlight.js/9.15.10/highlight.min.js"></script>
+    <script src="//lib.baomitu.com/instantclick/3.1.0/instantclick.min.js"></script>
+    #else
+    <script src="/static/admin/plugins/jquery/3.2.1/jquery.min.js"></script>
+    <script src="${theme_url('/static/js/highlight.min.js')}"></script>
+    <script src="${theme_url('/static/js/instantclick.min.js')}"></script>
+    #end
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body #if(!is_post) class="bg-grey" #end gtools_scp_screen_capture_injected="true">
+<!--[if lt IE 8]>
+<div class="browsehappy" role="dialog">
+    当前网页 <strong>不支持</strong> 你正在使用的浏览器. 为了正常的访问, 请 <a href="http://browsehappy.com/" target="_blank">升级你的浏览器</a>。
+</div>
+<![endif]-->
+<header id="header" class="header bg-white">
+    <div class="navbar-container">
+        <a href="${site_url()}" class="navbar-logo">
+            #if(theme_option('logo_url') == "")
+            <img src="http://img11.360buyimg.com/ddimg/jfs/t1/71242/26/8006/1529/5d5f75d5Eadc963ce/05bad4dc37f4345b.png" alt="${site_title()}"/>
+            #else
+            <img src="${theme_option('logo_url')}" alt="${site_title()}"/>
+            #end
+        </a>
+        <div class="navbar-menu">
+            #for(article : get_nav_list())
+            <a href="${site_url('/' + article.slug)}">${article.slugTitle}</a>
+            #end
+        </div>
+        <div class="navbar-search" onclick="">
+            <span class="icon-search"></span>
+            <form role="search" onsubmit="return false;">
+                <span class="search-box">
+                    <input type="text" id="search-inp" class="input" placeholder="搜索..." maxlength="30"
+                           autocomplete="off">
+                </span>
+            </form>
+        </div>
+        <div class="navbar-mobile-menu" onclick="">
+            <span class="icon-menu cross"><span class="middle"></span></span>
+            <ul>#for(article : get_nav_list())
+	            <li><a href="${site_url('/' + article.slug)}">${article.slugTitle}</a></li>
+            #end</ul>
+        </div>
+    </div>
+</header>

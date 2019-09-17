@@ -1,0 +1,93 @@
+#include('./partial/header.html',{title: article.title, keywords: article.tags})
+<article class="main-content page-page" itemscope itemtype="http://schema.org/Article">
+    <div class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            <a href="${permalink()}">${title()}</a>
+        </h1>
+        <div class="post-data">
+            <time datetime="${created('yyyy-MM-dd')}" itemprop="datePublished">发布于 ${created('yyyy-MM-dd')}</time>
+            / ${show_categories()} / <a href="#comments">${comments_num('没有评论', '%d 条评论')}</a> / <span id="articleHits">0</span>浏览
+        </div>
+    </div>
+    <div id="post-content" class="post-content" itemprop="articleBody">
+        <p class="post-tags">${show_tags()}</p>
+        ${show_content()}
+        <p class="post-info">
+                       本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>
+                       最后编辑时间为: ${modified('yyyy/MM/dd HH:mm')}
+        </p>
+    </div>
+</article>
+
+<style>
+#weixinShareDialog {
+	width: 230px;
+	height: 290px;
+	display: block;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 2px;
+	z-index: 11001;
+	font-size: 12px;
+	line-height: 20px;
+	box-sizing: border-box;
+	background-color: #fff;
+	box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15)
+}
+
+#weixinShareDialog .wx-header span {
+    top: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	line-height: 16px;
+	position: relative;
+	color: #000;
+	margin-left: 55px;
+}
+
+#weixinShareDialog .wx-qrcode {
+	margin: 15px auto;
+	width: 180px;
+	height: 180px
+}
+
+#weixinShareDialog .wx-close {
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	color: #db4437;
+	text-decoration: none;
+	font-size: 16px;
+	cursor: pointer
+}
+
+#weixinShareDialog .wx-footer {
+	text-align: center
+}
+</style>
+
+
+<div id="post-bottom-bar" class="post-bottom-bar">
+    <div class="bottom-bar-inner">
+        <div class="bottom-bar-items social-share left">
+            <span class="bottom-bar-item">Share : </span>
+            <span class="bottom-bar-item bottom-bar-twitter"><a href="https://connect.qq.com/widget/shareqq/index.html?url=${permalink()}&title=${title()}&summary=&site=baidu" target="_blank" title="${title()}" rel="nofollow">QQ</a></span>
+            <span class="bottom-bar-item bottom-bar-weibo"><a href="http://service.weibo.com/share/share.php?url=${permalink()}&title=${title()}" target="_blank" title="${title()}" rel="nofollow">微博</a></span>
+            <span class="bottom-bar-item bottom-bar-qrcode"><a href="javascript:void(0);" onclick="TaleComment.qrcode();" rel="nofollow">微信</a></span>
+        </div>
+        <div class="bottom-bar-items right">
+            <span class="bottom-bar-item">${thePrev('→')}</span>
+            <span class="bottom-bar-item">${theNext('←')}</span>
+            <span class="bottom-bar-item"><a href="#footer">↓</a></span>
+            <span class="bottom-bar-item"><a href="#">↑</a></span>
+        </div>
+    </div>
+</div>
+#include('./partial/other.html')
+#include('./partial/comments.html')
+#include('./partial/footer.html')

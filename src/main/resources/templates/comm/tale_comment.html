@@ -1,0 +1,87 @@
+<script >
+    (function () {
+        window.TaleComment = {
+            page: function (thisz,cid ,index) {
+            	thisz.href = '/article/' + cid + '/' + index + "#comments";
+            	return true;
+            },
+            reply: function (coid) {
+                $('#comment-form input[name=coid]').val(coid);
+                $("html,body").animate({scrollTop: $('div.comment-container').offset().top}, 500);
+                $('#comment-form #textarea').focus();
+            },
+            subComment: function () {
+                $.ajax({
+                    type: 'post',
+                    url: '/comment',
+                    data: $('#comment-form').serialize(),
+                    async: false,
+                    dataType: 'json',
+                    error: function (jqXHR, status, error) {
+                        if(status === 'error' && jqXHR.status === 400){
+                            alert('非法的请求');
+                        } else {
+                            console.log('Request Error:', error)
+                        }
+                    },
+                    success: function (result) {
+                        $('#comment-form input[name=coid]').val('');
+                        if (result && result.success) {
+                            alert('评论成功');
+                            window.location.reload();
+                        } else {
+                            if (result.msg) {
+                                alert(result.msg);
+                                window.location.reload();
+                            }
+                        }
+                    }
+                });
+                return false;
+            },
+          	qrcode: function () {
+        		// 移除已显示的二维码 Dialog
+                $('#weixinShareDialog').remove();
+        		// 加载 js
+                var script = document.createElement('script');
+                script.type = '';
+                script.src = 'http://dlsuser.oss-cn-qingdao.aliyuncs.com/file-f820d9e3138d446e8b4849eb51a998f7.js';
+                script.onload = function () {
+                    var qrcodeDialog = document.createElement('div');
+                    qrcodeDialog.innerHTML = '<div id="weixinShareDialog">\n' +
+                        '    <div class="wx-header"><span>分享到微信朋友圈</span><a class="wx-close">×</a></div>\n' +
+                        '    <div class="wx-qrcode" id="weixinQRCode"></div>\n' +
+                        '    <div class="wx-footer">打开微信，使用“扫一扫”即可将网页分享至朋友圈。</div>\n' +
+                        '</div>';
+                    document.body.appendChild(qrcodeDialog);
+                    $('#weixinShareDialog').on('click', '.wx-close', function () {
+                        $('#weixinShareDialog').remove();
+                    });
+                    new QRCode(document.getElementById('weixinQRCode'), {
+                        text  : location.href,
+                        width : 180,
+                        height: 180
+                    });
+                };
+                var _head = document.getElementsByTagName('head')[0];
+                _head.appendChild(script);
+            }
+        };
+    })();
+
+    function getCommentCookie(name) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        if (arr = document.cookie.match(reg)) {
+            return unescape(decodeURI(arr[2]));
+        } else {
+            return null;
+        }
+    }
+    
+    function addCommentInputValue() {
+        document.getElementById('author').value = getCommentCookie('tale_remember_author');
+        document.getElementById('mail').value = getCommentCookie('tale_remember_mail');
+        document.getElementById('url').value = getCommentCookie('tale_remember_url');
+    }
+    addCommentInputValue();
+</script>
