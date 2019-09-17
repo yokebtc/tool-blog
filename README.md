@@ -2,12 +2,11 @@
 
 ![tool-blog](https://ooo.0o0.ooo/2017/02/27/58b43450c9182.png)
 
-此博客来源于 [Tale](https://github.com/otale/tale)，由于博主长时间不更新，存在一些问题，在其基础上修复些bug及页面静态化，提高页面响应速度
+此博客来源于 [Tale](https://github.com/otale/tale)，由于博主长时间不更新，存在一些问题，在其基础上修复些bug、页面静态化，提高响应速度
 
 演示站点：http://blog.danglaoshi.app
 
 [开始使用](https://github.com/yokebtc/tool-blog/wiki)&nbsp; | &nbsp;[视频教程](https://github.com/yokebtc/tool-blog/wiki/07.-%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B)&nbsp;
-
 
 ## 特性
 
