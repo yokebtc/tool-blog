@@ -2,7 +2,12 @@
 
 ![tool-blog](https://ooo.0o0.ooo/2017/02/27/58b43450c9182.png)
 
-此博客来源于 [Tale](https://github.com/otale/tale)，由于博主长时间不更新，存在一些问题，在其基础上修复些bug、页面静态化，提高响应速度
+此博客来源于 [Tale](https://github.com/otale/tale)，由于博主长时间不更新，存在一些页面和功能bug。
+
+#修改内容
+- 管理后台页面布局
+- 异步无法提交文章内容bug
+- 页面静态化
 
 演示站点：http://blog.danglaoshi.app
 
