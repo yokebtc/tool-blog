@@ -1054,8 +1054,8 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 }
 
 .post-content pre code {
-	white-space: pre-wrap;
-	word-wrap: break-word;
+/* 	white-space: pre-wrap; */
+/* 	word-wrap: break-word; */
 	line-height: 20px;
 	margin: 0;
 	padding: 1.3em;
@@ -1064,7 +1064,7 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 }
 
 .post-content p a {
-	color: #313131;
+	color: #4489FF;
 	border-bottom: 1px solid #ccc
 }
 
@@ -1515,11 +1515,11 @@ input:-ms-input-placeholder,textarea:-ms-input-placeholder {
 	top: 100px;
 	display: inline-block;
 	text-align: left;
-/* 	width: 250px; */
+	width: 250px;
 	bottom: 75px;
 	word-wrap:break-word; 
 	word-break:break-all; 
-	overflow: hidden;  
+	overflow: auto; 
 }
 
 #directory li,#directory ul {

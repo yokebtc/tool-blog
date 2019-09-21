@@ -51,6 +51,7 @@ var vm = new Vue({
         });
 
         mditor = window.mditor = Mditor.fromTextarea(document.getElementById('md-editor'));
+        
         // 富文本编辑器
         htmlEditor = $('.summernote').summernote({
             lang: 'zh-CN',
@@ -95,6 +96,8 @@ var vm = new Vue({
             var $vm = this;
             var pos = window.location.toString().lastIndexOf("/");
             var cid = window.location.toString().substring(pos + 1)
+            //let btn = mditor.toolbar.getItem('image');
+            //console.log(JSON.stringify(btn));
             tale.get({
                 url: '/admin/api/categories',
                 success: function (data) {
@@ -285,6 +288,7 @@ var vm = new Vue({
         },
         publish: function (status) {
             var $vm = this;
+            var $mditor = mditor;
             var content = this.article.fmtType === 'markdown' ? mditor.value : htmlEditor.summernote('code');
             var title = $vm.article.title;
             if (title === '') {
@@ -296,18 +300,24 @@ var vm = new Vue({
                 return;
             }
             $vm.autoSaveTime = tale.currentDate();
-            //clearInterval(refreshIntervalId);
             $vm.article.status = status;
             $vm.autoSave(function () {
-                tale.alertOk({
-                    text: '文章保存成功',
-                    timer: 1200,
-                    then: function () {
-                        //setTimeout(function () {
-                            //window.location.href = '/admin/articles';
-                        //}, 500);
-                    }
-                });
+            	if(!mditor.fullscreen) {
+            		tale.alertOk({
+            			text: '文章保存成功',
+            			timer: 800,
+            			then: function () {
+            				//setTimeout(function () {
+            				//window.location.href = '/admin/articles';
+            				//}, 500);
+            			}
+            		});
+            	} else {
+            		$mditor.toolbar.addItem({
+            			"name" : "tag",
+            			"title" : $vm.autoSaveTime
+            		});
+            	}
             });
         }
     }
@@ -424,5 +434,14 @@ $(document).ready(function () {
 
     vm.isLoading = false;
     vueLoding.hide();
-
+    
+	mditor.toolbar.addItem({
+		"handler": function(){
+			vm.publish('publish');
+		},
+		"name" : "save",
+		"title" : "保存",
+		"key": 'shift+alt+a'
+	});
+    
 });

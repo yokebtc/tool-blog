@@ -141,15 +141,7 @@ var vm = new Vue({
 
             $vm.autoSave(function () {
             	$vm.autoSaveTime = tale.currentDate();
-                tale.alertOk({
-                    text: '文章发布成功',
-                    timer: 1200,
-                    then: function () {
-                        setTimeout(function () {
-                            window.location.href = '/admin/articles';
-                        }, 500);
-                    }
-                });
+            	window.location.href = '/admin/articles';
             });
         }
     }
