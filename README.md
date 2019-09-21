@@ -1,13 +1,6 @@
 # tool-blog 博客系统
 
-![tool-blog](https://ooo.0o0.ooo/2017/02/27/58b43450c9182.png)
-
-此博客来源于 [Tale](https://github.com/otale/tale)，由于博主长时间不更新，存在一些页面和功能bug。
-
-#修改内容
-- 管理后台页面布局
-- 异步无法提交文章内容bug
-- 页面静态化
+此博客来源于 [Tale](https://github.com/otale/tale)，由于博主长时间不更新，在基础上修改一些页面布局、文章背景图片、页面静态化等特性，打造属于自己的博客平台
 
 演示站点：http://blog.danglaoshi.app
 
